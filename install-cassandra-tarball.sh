@@ -15,10 +15,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-VERSION="2.1.7"
-SHA1="b720a3b31da17f42722e1e4c97a937fde45369d0"
+VERSION="3.11.4"
+SHA256="5d598e23c3ffc4db0301ec2b313061e3208fae0f9763d4b47888237dd9069987"
 TARBALL="apache-cassandra-${VERSION}-bin.tar.gz"
-URL="http://www.apache.dist/cassandra/${VERSION}/${TARBALL}"
+URL="http://apache.mirror.anlx.net/cassandra/${VERSION}/${TARBALL}"
 
 cd /
 
@@ -29,16 +29,16 @@ set -x
 # verify the checksum
 # untar in /opt, cleanup, symlink to /opt/cassandra
 
-echo "${SHA1} ${TARBALL}" > ${TARBALL}.sha1
+echo "${SHA256} ${TARBALL}" > ${TARBALL}.sha256
 
 # copy in from the Dockerfile for now to save downloads
 #curl -O -s ${URL}
 
-sha1sum --check ${TARBALL}.sha1
+sha256sum --check ${TARBALL}.sha256
 
 tar -xzf ${TARBALL} -C /opt
 
-rm -f ${TARBALL} ${TARBALL}.sha1
+rm -f ${TARBALL} ${TARBALL}.sha256
 
 ln -s /opt/apache-cassandra-$VERSION /opt/cassandra
 
